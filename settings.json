@@ -1,0 +1,119 @@
+{
+    "table_rect": [
+        384,
+        347,
+        1090,
+        545
+    ],
+    "control_points": [
+        [
+            1186,
+            567
+        ],
+        [
+            1456,
+            638
+        ]
+    ],
+    "outer_rect": {
+        "visible": true,
+        "size": 2,
+        "color": [
+            255,
+            255,
+            255,
+            128
+        ]
+    },
+    "inner_rect": {
+        "visible": true,
+        "size": 1,
+        "color": [
+            255,
+            255,
+            255,
+            100
+        ]
+    },
+    "pocket_lines": {
+        "visible": true,
+        "size": 2,
+        "color": [
+            255,
+            0,
+            0,
+            255
+        ]
+    },
+    "center_ghost": {
+        "visible": true,
+        "size": 17,
+        "color": [
+            0,
+            255,
+            0,
+            128
+        ]
+    },
+    "connecting_line": {
+        "visible": true,
+        "size": 3,
+        "color": [
+            255,
+            0,
+            0,
+            255
+        ]
+    },
+    "bounce_ghost": {
+        "visible": true,
+        "size": 17,
+        "color": [
+            0,
+            255,
+            0,
+            100
+        ]
+    },
+    "bounce_visuals": {
+        "visible": true,
+        "size": 17,
+        "color": [
+            255,
+            255,
+            255,
+            60
+        ]
+    },
+    "bounce_lines": {
+        "visible": true,
+        "size": 2,
+        "color": [
+            255,
+            255,
+            0,
+            255
+        ]
+    },
+    "gui_theme": {
+        "visible": true,
+        "size": 1,
+        "color": [
+            0,
+            179,
+            255,
+            113
+        ]
+    },
+    "font_color": {
+        "visible": true,
+        "size": 1,
+        "color": [
+            0,
+            0,
+            0,
+            255
+        ]
+    },
+    "bounce_count": 2
+}
