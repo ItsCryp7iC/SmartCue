@@ -364,16 +364,16 @@ class OverlayWindow(QtWidgets.QWidget):
             'control_points': [[927, 620], [1456, 755]],
             'outer_rect': {'visible': True, 'size': 2, 'color': [255, 255, 255, 128]},
             'inner_rect': {'visible': True, 'size': 1, 'color': [255, 255, 255, 100]},
-            'pocket_lines': {'visible': True, 'size': 2, 'color': [255, 0, 0, 255]},
-            'pocket_line_shadow': {'visible': True, 'size': 4, 'color': [0, 0, 0, 100]}, # <-- NEW SETTING
+            'pocket_lines': {'visible': True, 'size': 3, 'color': [255, 0, 0, 255]},
+            'pocket_line_shadow': {'visible': True, 'size': 30, 'color': [0, 255, 255, 92]}, # <-- NEW SETTING
             'center_ghost': {'visible': True, 'size': 17, 'color': [0, 255, 0, 128]},
             'connecting_line': {'visible': True, 'size': 3, 'color': [255, 0, 0, 255]},
             'bounce_ghost': {'visible': True, 'size': 17, 'color': [0, 255, 0, 100]},
             'bounce_visuals': {'visible': True, 'size': 17, 'color': [255, 255, 255, 60]},
             'bounce_lines': {'visible': True, 'size': 2, 'color': [255, 255, 0, 255]},
-            'gui_theme': {'visible': True, 'size': 1, 'color': [30, 60, 90, 230]},
-            'font_color': {'visible': True, 'size': 1, 'color': [220, 220, 220, 255]},
-            'bounce_count': 5,
+            'gui_theme': {'visible': True, 'size': 1, 'color': [26, 113, 207, 230]},
+            'font_color': {'visible': True, 'size': 1, 'color': [0, 0, 42, 255]},
+            'bounce_count': 2,
         }
 
     def load_settings(self):
