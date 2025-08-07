@@ -1,12 +1,12 @@
 import sys
 import json
-import os # <-- Added this import
+import os
 from PyQt5 import QtWidgets, QtCore, QtGui
 import win32con, win32gui, win32api
 from PyQt5.QtCore import Qt
 import math
 
-# --- NEW: Helper function to find bundled files ---
+# --- Helper function to find bundled files ---
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
@@ -237,7 +237,9 @@ class SettingsWindow(QtWidgets.QWidget):
 
         groups = {
             'outer_rect': "Outer Rectangle", 'inner_rect': "Inner Rectangle",
-            'pocket_lines': "Pocket Lines", 'center_ghost': "Object Ball",
+            'pocket_lines': "Pocket Lines", 
+            'pocket_line_shadow': "Pocket Line Shadow", # <-- NEW GROUP
+            'center_ghost': "Object Ball",
             'connecting_line': "Connecting Line", 'bounce_ghost': "Movable Ghost Ball", 
             'bounce_visuals': "Bounce Ghost Balls", 'bounce_lines': "Bounce Lines"
         }
@@ -363,14 +365,15 @@ class OverlayWindow(QtWidgets.QWidget):
             'outer_rect': {'visible': True, 'size': 2, 'color': [255, 255, 255, 128]},
             'inner_rect': {'visible': True, 'size': 1, 'color': [255, 255, 255, 100]},
             'pocket_lines': {'visible': True, 'size': 2, 'color': [255, 0, 0, 255]},
+            'pocket_line_shadow': {'visible': True, 'size': 4, 'color': [0, 0, 0, 100]}, # <-- NEW SETTING
             'center_ghost': {'visible': True, 'size': 17, 'color': [0, 255, 0, 128]},
             'connecting_line': {'visible': True, 'size': 3, 'color': [255, 0, 0, 255]},
             'bounce_ghost': {'visible': True, 'size': 17, 'color': [0, 255, 0, 100]},
             'bounce_visuals': {'visible': True, 'size': 17, 'color': [255, 255, 255, 60]},
             'bounce_lines': {'visible': True, 'size': 2, 'color': [255, 255, 0, 255]},
-            'gui_theme': {'visible': True, 'size': 1, 'color': [0, 179, 255, 113]},
-            'font_color': {'visible': True, 'size': 1, 'color': [0, 0, 0, 255]},
-            'bounce_count': 2,
+            'gui_theme': {'visible': True, 'size': 1, 'color': [30, 60, 90, 230]},
+            'font_color': {'visible': True, 'size': 1, 'color': [220, 220, 220, 255]},
+            'bounce_count': 5,
         }
 
     def load_settings(self):
@@ -562,6 +565,14 @@ class OverlayWindow(QtWidgets.QWidget):
         painter.drawRect(QtCore.QRect(self.table_border.right() - handle_size // 2, self.table_border.bottom() - handle_size // 2, handle_size, handle_size))
 
         object_ball, ghost_ball = self.control_points
+        
+        # --- NEW: Draw shadows first, underneath the main lines ---
+        if s['pocket_line_shadow']['visible']:
+            shadow_pen = QtGui.QPen(QtGui.QColor(*s['pocket_line_shadow']['color']), s['pocket_line_shadow']['size'])
+            painter.setPen(shadow_pen)
+            for pocket in self.pockets:
+                painter.drawLine(int(object_ball[0]) + 1, int(object_ball[1]) + 1, int(pocket.x()) + 1, int(pocket.y()) + 1)
+
         if s['pocket_lines']['visible']:
             painter.setPen(QtGui.QPen(QtGui.QColor(*s['pocket_lines']['color']), s['pocket_lines']['size']))
             for pocket in self.pockets:
@@ -662,7 +673,6 @@ class OverlayWindow(QtWidgets.QWidget):
 
     def closeEvent(self, event):
         self.save_settings()
-        # --- FIX: Explicitly quit the application to terminate the process ---
         QtWidgets.QApplication.instance().quit()
 
 if __name__ == "__main__":
